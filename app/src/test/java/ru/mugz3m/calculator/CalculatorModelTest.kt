@@ -35,7 +35,7 @@ internal class CalculatorModelTest {
 
     @Test
     fun divideByZero() {
-        val block: () -> Unit = { testCalculatorModel.divide(40.5, 0.0) }
-        assertThrows(ArithmeticException::class.java, block)
+        val expected = Double.POSITIVE_INFINITY
+        assertEquals(expected, testCalculatorModel.divide(40.5, 0.0), 0.0)
     }
 }
