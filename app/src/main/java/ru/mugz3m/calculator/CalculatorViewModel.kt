@@ -105,14 +105,26 @@ class CalculatorViewModel : ViewModel() {
     }
 
     private fun performLeadToNegative() {
-        state = if (state.operation == null) {
-            state.copy(
-                firstNumber = "-" + state.firstNumber
-            )
+        if (state.operation == null) {
+            state = if (state.firstNumber.contains("-")) {
+                state.copy(
+                    firstNumber = state.firstNumber.replace("-", "")
+                )
+            } else {
+                state.copy(
+                    firstNumber = "-" + state.firstNumber
+                )
+            }
         } else {
-            state.copy(
-                secondNumber = "-" + state.secondNumber
-            )
+            state = if (state.secondNumber.contains("-")) {
+                state.copy(
+                    secondNumber = state.secondNumber.replace("-", "")
+                )
+            } else {
+                state.copy(
+                    secondNumber = "-" + state.secondNumber
+                )
+            }
         }
     }
 
