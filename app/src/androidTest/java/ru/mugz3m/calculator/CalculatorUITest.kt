@@ -240,4 +240,19 @@ class CalculatorUITest {
 
         composeTestRule.onNodeWithContentDescription("InputField").assertTextContains("Infinity")
     }
+
+    @Test
+    fun testDoublePerformLeadToNegative() {
+        composeTestRule.onNodeWithText("1").performClick()
+        composeTestRule.onNodeWithText("±").performClick()
+        composeTestRule.onNodeWithText("3").performClick()
+        composeTestRule.onNodeWithText(".").performClick()
+        composeTestRule.onNodeWithText("5").performClick()
+        composeTestRule.onNodeWithText("±").performClick()
+        composeTestRule.onNodeWithText("+").performClick()
+        composeTestRule.onNodeWithText("1").performClick()
+        composeTestRule.onNodeWithText("=").performClick()
+
+        composeTestRule.onNodeWithContentDescription("InputField").assertTextContains("14.5")
+    }
 }
